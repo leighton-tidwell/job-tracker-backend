@@ -7,8 +7,8 @@ import com.tdwldevelopment.model.User;
 
 public interface UserRepository extends MongoRepository<User, String> {
 	
-	@Query("{name:'?0'}")
-	User findUserByName(String name);
+	@Query("{email:'?0'}")
+	User findUserByEmail(String email);
 	
 	
 	public long count();
