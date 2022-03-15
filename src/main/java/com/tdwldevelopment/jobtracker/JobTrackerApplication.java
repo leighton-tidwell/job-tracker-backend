@@ -15,7 +15,7 @@ import com.tdwldevelopment.repository.UserRepository;
 @RestController
 @SpringBootApplication
 @EnableMongoRepositories(basePackageClasses = UserRepository.class)
-public class JobtrackerApplication {
+public class JobTrackerApplication {
 
 	@Autowired
 	UserRepository userRepo;
@@ -27,7 +27,7 @@ public class JobtrackerApplication {
 	}
 	
 	public static void main(String[] args) {
-		SpringApplication.run(JobtrackerApplication.class, args);
+		SpringApplication.run(JobTrackerApplication.class, args);
 	}
 
 }
