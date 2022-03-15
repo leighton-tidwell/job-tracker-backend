@@ -13,12 +13,16 @@ import com.tdwldevelopment.model.User;
 import com.tdwldevelopment.repository.UserRepository;
 
 @RestController
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"com.tdwldevelopment.repository"})
 @EnableMongoRepositories(basePackageClasses = UserRepository.class)
 public class JobTrackerApplication {
 
+	private final UserRepository userRepo;
+
 	@Autowired
-	UserRepository userRepo;
+	public JobTrackerApplication(UserRepository repository) {
+		this.userRepo = repository;
+	}
 	
 	@RequestMapping(value = "/")
 	public List<User> getUsers() {
