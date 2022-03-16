@@ -8,7 +8,7 @@
         <version>2.6.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.tdwldevelopment</groupId>
+    <groupId>dev.tdwl</groupId>
     <artifactId>jobtracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>jobtracker</name>
