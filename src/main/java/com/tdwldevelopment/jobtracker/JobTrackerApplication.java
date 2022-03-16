@@ -1,7 +1,7 @@
 package com.tdwldevelopment.jobtracker;
 
-import java.util.List;
-
+import com.tdwldevelopment.model.User;
+import com.tdwldevelopment.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,29 +9,32 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tdwldevelopment.model.User;
-import com.tdwldevelopment.repository.UserRepository;
+import java.util.List;
 
 @RestController
-@SpringBootApplication(scanBasePackages={"com.tdwldevelopment.repository"})
+@SpringBootApplication(scanBasePackages = {"com.tdwldevelopment.repository"})
 @EnableMongoRepositories(basePackageClasses = UserRepository.class)
 public class JobTrackerApplication {
 
-	private final UserRepository userRepo;
+    private final UserRepository userRepo;
 
-	@Autowired
-	public JobTrackerApplication(UserRepository repository) {
-		this.userRepo = repository;
-	}
-	
-	@RequestMapping(value = "/")
-	public List<User> getUsers() {
-		userRepo.save(new User("leighton-tidwell", "leighton.tidwell@email.com"));
-		return userRepo.findAll();
-	}
-	
-	public static void main(String[] args) {
-		SpringApplication.run(JobTrackerApplication.class, args);
-	}
+    @Autowired
+    public JobTrackerApplication(UserRepository repository) {
+        this.userRepo = repository;
+    }
+
+    @RequestMapping(value = "/")
+    public List<User> getUsers() {
+        try {
+            userRepo.save(new User("leighton-tidwell", "leighton.tidwell@email.com"));
+        } catch (org.springframework.dao.DuplicateKeyException e) {
+            System.out.println(e);
+        }
+        return userRepo.findAll();
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(JobTrackerApplication.class, args);
+    }
 
 }
