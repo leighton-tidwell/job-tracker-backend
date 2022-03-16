@@ -14,7 +14,7 @@ public class UserTests {
     }
 
     @BeforeEach
-    public void setUp() {
+    public void init() {
         user.setUsername("foo");
         user.setEmail("foo@bar.com");
     }
