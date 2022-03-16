@@ -1,10 +1,14 @@
 package com.tdwldevelopment.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("users")
 public class User {
+
+    @Id
+    private String id;
 
     private String username;
 
@@ -15,6 +19,14 @@ public class User {
         super();
         this.username = username;
         this.email = email;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {

@@ -2,7 +2,9 @@ package com.tdwldevelopment.repository;
 
 import com.tdwldevelopment.jobtracker.JobTrackerApplication;
 import com.tdwldevelopment.model.User;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -11,7 +13,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ContextConfiguration(classes = JobTrackerApplication.class)
 @DataMongoTest(properties = {"spring.mongodb.embedded.version=4.0.2"})
@@ -24,10 +27,11 @@ public class UserRepositoryTests {
 	public UserRepositoryTests(UserRepository repository) {
 		this.userRepo = repository;
 	}
-	
+
 	@BeforeEach
 	void init() {
 		User user = new User("foo", "foo@bar.com");
+		user.setId("test");
 		userRepo.save(user);
 	}
 
@@ -40,6 +44,12 @@ public class UserRepositoryTests {
 	void shouldGetUserByEmail() {
 		User find = userRepo.findUserByEmail("foo@bar.com");
 		assertEquals("foo@bar.com", find.getEmail());
+	}
+
+	@Test
+	void shouldGetUserById() {
+		User find = userRepo.findUserById("test");
+		assertEquals("test", find.getId());
 	}
 
 	@Test

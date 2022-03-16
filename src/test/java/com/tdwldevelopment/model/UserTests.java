@@ -11,32 +11,44 @@ public class UserTests {
 
     public UserTests() {
         this.user = new User("foo", "foo@bar.com");
+        user.setId("test");
     }
 
     @BeforeEach
-    public void init() {
+    void init() {
         user.setUsername("foo");
         user.setEmail("foo@bar.com");
     }
 
     @Test
-    public void shouldGetEmail() {
+    void shouldGetId() {
+        assertEquals("test", user.getId());
+    }
+
+    @Test
+    void shouldSetId() {
+        user.setId("foo");
+        assertEquals("foo", user.getId());
+    }
+
+    @Test
+    void shouldGetEmail() {
         assertEquals("foo@bar.com", user.getEmail());
     }
 
     @Test
-    public void shouldSetEmail() {
+    void shouldSetEmail() {
         user.setEmail("test@test.com");
         assertEquals("test@test.com", user.getEmail());
     }
 
     @Test
-    public void shouldGetUsername() {
+    void shouldGetUsername() {
         assertEquals("foo", user.getUsername());
     }
 
     @Test
-    public void shouldSetUsername() {
+    void shouldSetUsername() {
         user.setUsername("test");
         assertEquals("test", user.getUsername());
     }
