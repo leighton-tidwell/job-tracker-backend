@@ -30,7 +30,7 @@ public class UserRepositoryTests {
 
     @BeforeEach
     void init() {
-        User user = new User("foo", "foo@bar.com");
+        User user = new User("foo@bar.com", "foo");
         user.setId("test");
         userRepo.save(user);
     }

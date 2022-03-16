@@ -16,8 +16,8 @@ public class UserTests {
 
     @BeforeEach
     void init() {
-        user.setUsername("foo");
         user.setEmail("foo@bar.com");
+        user.setPassword("foo");
     }
 
     @Test
@@ -43,14 +43,14 @@ public class UserTests {
     }
 
     @Test
-    void shouldGetUsername() {
-        assertEquals("foo", user.getUsername());
+    void shouldGetPassword() {
+        assertEquals("foo", user.getPassword());
     }
 
     @Test
-    void shouldSetUsername() {
-        user.setUsername("test");
-        assertEquals("test", user.getUsername());
+    void shouldSetPassword() {
+        user.setPassword("test");
+        assertEquals("test", user.getPassword());
     }
 
 }

@@ -10,15 +10,15 @@ public class User {
     @Id
     private String id;
 
-    private String username;
-
     @Indexed(unique = true)
     private String email;
 
-    public User(String username, String email) {
+    private String password;
+
+    public User(String email, String password) {
         super();
-        this.username = username;
         this.email = email;
+        this.password = password;
     }
 
     public String getId() {
@@ -29,12 +29,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getPassword() {
+        return this.password;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPassword(String username) {
+        this.password = username;
     }
 
     public String getEmail() {
