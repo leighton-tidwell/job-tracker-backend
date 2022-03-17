@@ -22,7 +22,6 @@ public class UserController {
 
     @GetMapping("/users")
     public List<User> getUsers() {
-        System.out.println("invoked");
         return userRepo.findAll();
     }
 
