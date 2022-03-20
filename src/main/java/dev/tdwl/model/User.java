@@ -22,7 +22,7 @@ public class User {
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
@@ -38,10 +38,11 @@ public class User {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
