@@ -11,15 +11,17 @@ public class Contact {
 
     private String userId;
     private String jobId;
+    private String name;
     private String position;
     private String company;
     private String location;
     private String email;
     private String phone;
 
-    public Contact(String userId, String jobId, String position, String company, String location, String email, String phone) {
+    public Contact(String userId, String jobId, String name, String position, String company, String location, String email, String phone) {
         this.userId = userId;
         this.jobId = jobId;
+        this.name = name;
         this.position = position;
         this.company = company;
         this.location = location;
@@ -50,6 +52,14 @@ public class Contact {
 
     public void setJobId(String jobId) {
         this.jobId = jobId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPosition() {
