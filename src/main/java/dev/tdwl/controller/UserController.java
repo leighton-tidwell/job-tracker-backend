@@ -4,6 +4,7 @@ import dev.tdwl.model.*;
 import dev.tdwl.repository.*;
 import dev.tdwl.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,12 +65,16 @@ public class UserController {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loginUserId = userDetails.getId();
 
-        return contactRepo.findContactsByUserId(loginUserId);
+        Sort sort = Sort.by(Sort.Direction.DESC, "name");
+
+        return contactRepo.findContactsByUserId(loginUserId, sort);
     }
 
     @GetMapping("/users/contacts/job/id/{id}")
     public List<Contact> getContactListForJob(@PathVariable("id") String id) {
-        return contactRepo.findContactsByJobId(id);
+        Sort sort = Sort.by(Sort.Direction.DESC, "name");
+        
+        return contactRepo.findContactsByJobId(id, sort);
     }
 
     @GetMapping("/users/contact/id/{id}")
