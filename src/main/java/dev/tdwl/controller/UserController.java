@@ -1,13 +1,7 @@
 package dev.tdwl.controller;
 
-import dev.tdwl.model.Activities;
-import dev.tdwl.model.CategoryLists;
-import dev.tdwl.model.Contact;
-import dev.tdwl.model.User;
-import dev.tdwl.repository.ActivitiesRepository;
-import dev.tdwl.repository.CategoryListsRepository;
-import dev.tdwl.repository.ContactRepository;
-import dev.tdwl.repository.UserRepository;
+import dev.tdwl.model.*;
+import dev.tdwl.repository.*;
 import dev.tdwl.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,13 +18,15 @@ public class UserController {
     private final CategoryListsRepository categoryRepo;
     private final ContactRepository contactRepo;
     private final ActivitiesRepository activityRepo;
+    private final NotesRepository notesRepo;
 
     @Autowired
-    public UserController(UserRepository repository, CategoryListsRepository categoryRepo, ContactRepository contactRepo, ActivitiesRepository activityRepo) {
+    public UserController(UserRepository repository, CategoryListsRepository categoryRepo, ContactRepository contactRepo, ActivitiesRepository activityRepo, NotesRepository notesRepo) {
         this.userRepo = repository;
         this.categoryRepo = categoryRepo;
         this.contactRepo = contactRepo;
         this.activityRepo = activityRepo;
+        this.notesRepo = notesRepo;
     }
 
     @GetMapping("/users")
@@ -108,5 +104,23 @@ public class UserController {
 
         return ResponseEntity.ok(activities);
     }
+
+    @GetMapping("/users/notes/job/id/{id}")
+    public Notes getNotesForJob(@PathVariable("id") String id) {
+        return notesRepo.findNotesByJobId(id);
+    }
+
+    @PostMapping("/users/notes/job")
+    public ResponseEntity<?> updateNotes(@RequestBody Notes notes) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loginUserId = userDetails.getId();
+
+        notes.setUserId(loginUserId);
+
+        notesRepo.save(notes);
+
+        return ResponseEntity.ok(notes);
+    }
+
 
 }

@@ -15,6 +15,8 @@ public class Notes {
     @Indexed(unique = true)
     private String jobId;
 
+    private String userId;
+
     private List<Note> notes;
 
     public Notes(String jobId, List<Note> notes) {
@@ -28,6 +30,14 @@ public class Notes {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getJobId() {
