@@ -65,15 +65,15 @@ public class UserController {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String loginUserId = userDetails.getId();
 
-        Sort sort = Sort.by(Sort.Direction.DESC, "name");
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
 
         return contactRepo.findContactsByUserId(loginUserId, sort);
     }
 
     @GetMapping("/users/contacts/job/id/{id}")
     public List<Contact> getContactListForJob(@PathVariable("id") String id) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "name");
-        
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+
         return contactRepo.findContactsByJobId(id, sort);
     }
 
