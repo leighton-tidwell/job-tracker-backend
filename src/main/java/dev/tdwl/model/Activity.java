@@ -1,13 +1,12 @@
 package dev.tdwl.model;
 
-import java.util.Date;
-
 public class Activity {
 
     private String id;
+    private String title;
     private String type;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private String note;
     private Boolean isCompleted;
 
@@ -19,6 +18,14 @@ public class Activity {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getType() {
         return type;
     }
@@ -27,19 +34,19 @@ public class Activity {
         this.type = type;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
