@@ -93,6 +93,19 @@ public class UserController {
         return ResponseEntity.ok(contact);
     }
 
+    @DeleteMapping("/users/contact")
+    public ResponseEntity<?> deleteContact(@RequestBody Contact contact) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loginUserId = userDetails.getId();
+
+        if (loginUserId.equals(contact.getUserId())) {
+            contactRepo.delete(contact);
+            return ResponseEntity.ok(true);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
     @GetMapping("/users/activities/job/id/{id}")
     public Activities getActivitiesForJob(@PathVariable("id") String id) {
         return activityRepo.findActivitiesByJobId(id);
