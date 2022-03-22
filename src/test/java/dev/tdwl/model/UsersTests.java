@@ -1,5 +1,6 @@
 package dev.tdwl.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,10 +10,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UsersTest {
-    private final Users listOfUsers = new Users();
+public class UsersTests {
+    private final Users listOfUsers;
 
-    public UsersTest() {
+    public UsersTests() {
+        this.listOfUsers = new Users();
+    }
+
+    @BeforeEach
+    void init() {
         User user1 = new User("foo", "foo@bar.com");
         User user2 = new User("bar", "bar@foo.com");
         List<User> addedUsers = new ArrayList<>(Arrays.asList(user1, user2));
@@ -22,6 +28,13 @@ public class UsersTest {
     @Test
     void shouldGetListOfUsers() {
         assertEquals(2, listOfUsers.getUserList().size());
+    }
+
+    @Test
+    void shouldGetEmptyList() {
+        // test for if user list is null
+        listOfUsers.setUserList(null);
+        assertEquals(0, listOfUsers.getUserList().size());
     }
 
     @Test
