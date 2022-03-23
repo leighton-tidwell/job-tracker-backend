@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@SpringBootApplication(scanBasePackages = {"dev.tdwl.repository", "dev.tdwl.controller", "dev.tdwl.services", "dev.tdwl.security"})
+@SpringBootApplication(scanBasePackages = {"dev.tdwl.*"})
 @EnableMongoRepositories(basePackageClasses = UserRepository.class)
 public class JobTrackerApplication {
 
