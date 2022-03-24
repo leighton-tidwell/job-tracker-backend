@@ -47,11 +47,6 @@ public class AuthController {
     @GetMapping("/auth/check")
     public ResponseEntity<?> verifyLogin() {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (userDetails.getId() == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
         return ResponseEntity.ok(userDetails);
     }
 
