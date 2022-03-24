@@ -54,7 +54,7 @@ public class AuthControllerTests {
     @WithMockUser
     void testAuthenticationCheckValid() {
         try {
-            mockMvc.perform(get("/auth/check").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andDo(print());
+            mockMvc.perform(get("/auth/check").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andDo(print());
         } catch (Exception e) {
             e.printStackTrace();
         }

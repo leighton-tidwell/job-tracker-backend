@@ -15,13 +15,7 @@ public class User {
 
     private String password;
 
-    public User(String email) {
-        super();
-        this.email = email;
-    }
-
     public User(String email, String password) {
-        super();
         this.email = email;
         this.password = password;
     }

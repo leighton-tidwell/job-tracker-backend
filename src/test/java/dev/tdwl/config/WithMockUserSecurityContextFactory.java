@@ -13,7 +13,7 @@ public class WithMockUserSecurityContextFactory implements WithSecurityContextFa
     @Override
     public SecurityContext createSecurityContext(WithMockUser customUser) {
         SecurityContext context = SecurityContextHolder.createEmptyContext();
-        User testUser = new User("test@test.com");
+        User testUser = new User("test@test.com", "testPassword");
         testUser.setId("testId");
         UserDetailsImpl principal = UserDetailsImpl.build(testUser);
 
