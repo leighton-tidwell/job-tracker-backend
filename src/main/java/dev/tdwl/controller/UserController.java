@@ -111,6 +111,14 @@ public class UserController {
         return activityRepo.findActivitiesByJobId(id);
     }
 
+    @GetMapping("/users/activities")
+    public List<Activities> getActivitiesForUser() {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String loginUserId = userDetails.getId();
+
+        return activityRepo.findActivitiesByUserId(loginUserId);
+    }
+
     @PostMapping("/users/activities/job")
     public ResponseEntity<?> updateActivities(@RequestBody Activities activities) {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
